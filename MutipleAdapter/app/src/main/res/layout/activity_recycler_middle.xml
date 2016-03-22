@@ -2,12 +2,12 @@
 <com.JasonSu.mutipleadapter.adapterItem.ItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="8dp">
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/test_pic"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="fitCenter" />
-
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="This is middle item"
+        android:textSize="18sp" />
 </com.JasonSu.mutipleadapter.adapterItem.ItemLayout>

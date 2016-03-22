@@ -2,48 +2,98 @@ package com.JasonSu.mutipleadapter.adapterItem;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 /**
- * RecyclerView Item
- * Created by Jason Su on 2015/11/13.
+ * Created by Jason Su on 2015/10/30.
  */
 public class Item {
 
-    private boolean ItemClickCallback;
-    @NonNull
     private final BaseProvider mProvider;
+    private Object mTag;
+    private boolean mItemClickable;
 
-    public Item(Item.Builder builder) {
-        this.mProvider = builder.mProvider;
-        this.ItemClickCallback = builder.ItemClickCallback;
+    /**
+     * Creates a new Item.
+     *
+     * @param
+     */
+    private Item(final Builder builder) {
+        mProvider = builder.mProvider;
+        mTag = builder.mTag;
+        mItemClickable = builder.mItemClickable;
     }
 
-    public BaseProvider getProvider(){
+    public Object getmTag() {
+        return mTag;
+    }
+
+    public boolean isItemClickable() {
+        return mItemClickable;
+    }
+
+    public void setItemClickable(boolean mItemClickable) {
+        this.mItemClickable = mItemClickable;
+    }
+
+    /**
+     * Get the Item content.
+     *
+     * @return
+     */
+    @NonNull
+    public BaseProvider getProvider() {
         return mProvider;
     }
 
     public static class Builder {
-
-        private Context mContext;
+        @NonNull
+        private final Context mContext;
+        @Nullable
+        private Object mTag;
+        private boolean mDismissible;
         private BaseProvider mProvider;
-        private boolean ItemClickCallback;
+        private boolean mItemClickable;
 
-        public Builder(Context context) {
-            this.mContext = context;
-        }
-
-        public Builder setItemClickCallback(boolean itemClickCallback) {
-            this.ItemClickCallback = itemClickCallback;
+        public Builder setItemClickable(boolean isItemClickable) {
+            this.mItemClickable = isItemClickable;
             return this;
         }
 
-        public <T extends BaseProvider> T withProvider(T provider) {
-            mProvider = provider;
-            provider.setContext(mContext);
-            provider.setBuilder(this);
-            return provider;
+        public Builder setTag(Object tag) {
+            this.mTag = tag;
+            return this;
         }
 
+        /**
+         * Creates a new Builder.
+         *
+         * @param
+         */
+        public Builder(final Context context) {
+            mContext = context;
+        }
+
+        /**
+         * Set the provider.
+         *
+         * @param
+         * @param
+         * @return
+         */
+        @NonNull
+        public <T extends BaseProvider> T withProvider(T content) {
+            mProvider = content;
+            content.setContext(mContext);
+            content.setBuilder(this);
+            return content;
+        }
+
+        /**
+         * Builds the item.
+         *
+         * @return
+         */
         @NonNull
         public Item build() {
             if (mProvider == null) {

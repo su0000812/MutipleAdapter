@@ -22,10 +22,9 @@ public abstract class Action {
 
     protected void notifyActionChanged() {
         if (mProvider != null) {
-            // Only notify if something changed at runtime
             mProvider.notifyDataSetChanged();
         }
     }
 
-    protected abstract void onRender(@NonNull final View view, @NonNull final Item item, final int position);
+    protected abstract void onRender(@NonNull final View view, @NonNull final Item item);
 }

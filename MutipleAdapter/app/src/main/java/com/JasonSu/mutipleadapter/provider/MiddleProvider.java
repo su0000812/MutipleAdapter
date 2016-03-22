@@ -12,7 +12,7 @@ import com.JasonSu.mutipleadapter.adapterItem.Item;
 public class MiddleProvider extends BaseProvider<MiddleProvider> {
 
     @Override
-    public void render(@NonNull View view, @NonNull Item item, int position) {
-        super.render(view, item, position);
+    public void render(@NonNull View view, @NonNull Item item) {
+        super.render(view, item);
     }
 }
